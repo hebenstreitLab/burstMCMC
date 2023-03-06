@@ -2,7 +2,7 @@ Package: burstMCMC
 Title: Inferring transcriptional bursting dynamics from 4sU scRNA-seq data
 Version: 0.0.0.9000
 Authors@R: 
-    person("David", "Michael", "Edwards", , "davidedwards.132@gmail.com", role = c("aut", "cre"),
+    person("David", "Edwards", , "davidedwards.132@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7250-2099"))
 Description: Carries out Bayesian inference of transcriptional bursting dynamics parameters from 4sU scRNA-seq data using Markov chain Monte Carlo (Metropolis-adjusted Langevin algorithm (MALA)-within-Gibbs).
 License: `use_mit_license()`
@@ -11,9 +11,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 2.10)
-    reticulate
-    actuar
-    parallel
 LazyData: true
 Suggests: 
     knitr,
