@@ -1,7 +1,6 @@
-# Inferring transcriptional bursting dynamics from 4sU scRNA-seq data
 
-## Installation and preabmle
-``` {eval=F, echo=T}
+# Installation and preabmle
+``` {R eval=F, echo=T}
 install.packages("devtools")
 devtools::install_github("hebenstreitLab/burstMCMC")
 install.packages('actuar')
@@ -10,11 +9,12 @@ install.packages('reticulate')
 reticulate::install_miniconda()
 reticulate::py_install('scipy')
 reticulate::py_install('numpy')
-burstMCMC::getPython()
+library(burstMCMC)
+getPython()
 ```
 
-## Loading data
-``` {eval=F, echo=T}
+# Loading data
+``` {R eval=F, echo=T}
 preprocessedData <- burstMCMC::preprocessedData
 alphas <- burstMCMC::alphas
 
@@ -24,11 +24,11 @@ Data <- burstMCMC::sampleData
 genes <- names(Data)
 ```
 
-## Parameter inference
-``` {eval=F, echo=T}
+# Parameter inference
+``` {R eval=F, echo=T}
 Time <- 240
 model <- 2
-burstMCMC::getPython()
+getPython()
 outputs <- MALAwithinGibbs(model, cores, Time, Data)
 
 means <- burstMCMC::means
@@ -38,10 +38,15 @@ estimates <- burstMCMC::estimates
 outputs <- burstMCMC::outputs
 ```
 
-## Analysing results
-``` {eval=F, echo=T}
-models <- getModels(outputs)
+``` {R eval=T, echo=F}
+library(burstMCMC)
+Data <- burstMCMC::sampleData
+genes <- names(Data)
+```
 
+# Analysing results
+``` {R eval=T, echo=T}
+models <- getModels(outputs)
 
 posteriors <- getPosteriors3P(outputs)
 
@@ -61,8 +66,8 @@ plotPosteriors(gene, posteriors, thinning)
 estimates5P <- getEstimates(posteriors, thinning)
 ```
 
-## Simulation-based validation
-``` {eval=F, echo=T}
+# Simulation-based validation
+``` {R eval=F, echo=T}
 #means estimates must be first three columns as expression level, burst rate and transcript lifetime, with genes as rownames
 simulatedData <- simulateGenes(cores, Time, Data, means)
 simulatedData <- simulateGenes(cores, Time, Data, estimates3P[["means"]])
