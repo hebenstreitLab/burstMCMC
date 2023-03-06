@@ -58,10 +58,7 @@ initialiseChain <- function(priorRandomVariables, hyperParameters) {
 
 #' @export
 getPython <- function() {
-  # reticulate::import('scipy', delay_load = TRUE)
-  # reticulate::import('numpy', delay_load = TRUE)
-  # reticulate::import('math', delay_load = TRUE)
-  reticulate::source_python(file = system.file('python/hypergeomCalculator.py', package = "burstMCMC", mustWork = T))
+  reticulate::source_python(file = system.file('python/hypergeomCalculator.py', package = "burstMCMC", mustWork = T), )
   reticulate::source_python(file = system.file('python/f_i_m.py', package = "burstMCMC", mustWork = T))
   calculateHypergeom <<- calculateHypergeom
   get_f_i_m <<- get_f_i_m

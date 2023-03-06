@@ -355,10 +355,70 @@ display: none;
 <div id="inferring-transcriptional-bursting-dynamics-from-4su-scrna-seq-data" class="section level1">
 <h1>Inferring transcriptional bursting dynamics from 4sU scRNA-seq
 data</h1>
-<p>Python3.X must be installed along with the scipy, numpy and math
-modules.</p>
+<div id="installation-and-preabmle" class="section level2">
+<h2>Installation and preabmle</h2>
 <pre eval="F," echo="T"><code>install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;hebenstreitLab/burstMCMC&quot;)</code></pre>
+devtools::install_github(&quot;hebenstreitLab/burstMCMC&quot;)
+install.packages(&#39;actuar&#39;)
+install.packages(&#39;parallel&#39;)
+install.packages(&#39;reticulate&#39;)
+reticulate::install_miniconda()
+reticulate::py_install(&#39;scipy&#39;)
+reticulate::py_install(&#39;numpy&#39;)
+burstMCMC::getPython()</code></pre>
+</div>
+<div id="loading-data" class="section level2">
+<h2>Loading data</h2>
+<pre eval="F," echo="T"><code>preprocessedData &lt;- burstMCMC::preprocessedData
+alphas &lt;- burstMCMC::alphas
+
+cores &lt;- 10
+Data &lt;- formatData(preprocessedData, alphas, cores)
+Data &lt;- burstMCMC::sampleData
+genes &lt;- names(Data)</code></pre>
+</div>
+<div id="parameter-inference" class="section level2">
+<h2>Parameter inference</h2>
+<pre eval="F," echo="T"><code>Time &lt;- 240
+model &lt;- 2
+burstMCMC::getPython()
+outputs &lt;- MALAwithinGibbs(model, cores, Time, Data)
+
+means &lt;- burstMCMC::means
+CVs &lt;- burstMCMC::CVs
+estimates &lt;- burstMCMC::estimates
+
+outputs &lt;- burstMCMC::outputs</code></pre>
+</div>
+<div id="analysing-results" class="section level2">
+<h2>Analysing results</h2>
+<pre eval="F," echo="T"><code>models &lt;- getModels(outputs)
+
+
+posteriors &lt;- getPosteriors3P(outputs)
+
+#only for the 3 parameter posterior checking
+checkAcceptanceRates(posteriors)
+
+gene &lt;- genes[1]
+plotTraces(gene, posteriors)
+thinning &lt;- 2
+#applies thinning and burn-in removal
+plotPosteriors(gene, posteriors, thinning)
+estimates3P &lt;- getEstimates(posteriors, thinning)
+
+posteriors &lt;- getPosteriors5P(outputs)
+plotTraces(gene, posteriors)
+plotPosteriors(gene, posteriors, thinning)
+estimates5P &lt;- getEstimates(posteriors, thinning)</code></pre>
+</div>
+<div id="simulation-based-validation" class="section level2">
+<h2>Simulation-based validation</h2>
+<pre eval="F," echo="T"><code>#means estimates must be first three columns as expression level, burst rate and transcript lifetime, with genes as rownames
+simulatedData &lt;- simulateGenes(cores, Time, Data, means)
+simulatedData &lt;- simulateGenes(cores, Time, Data, estimates3P[[&quot;means&quot;]])
+outputs &lt;- MALAwithinGibbs(model, cores, Time, simulatedData)</code></pre>
+</div>
 </div>
 
 
