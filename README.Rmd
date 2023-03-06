@@ -1,3 +1,9 @@
+---
+title: "Test"
+output:
+  html_document: default
+  pdf_document: default
+---
 # Inferring transcriptional bursting dynamics from 4sU scRNA-seq data
 
 ## Installation and preabmle
