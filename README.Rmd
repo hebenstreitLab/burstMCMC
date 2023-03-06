@@ -1,0 +1,10 @@
+# Inferring transcriptional bursting dynamics from 4sU scRNA-seq data
+
+Python3.X must be installed along with the scipy, numpy and math modules.
+
+``` {eval=F, echo=T}
+install.packages("devtools")
+devtools::install_github("hebenstreitLab/burstMCMC")
+```
+
+
