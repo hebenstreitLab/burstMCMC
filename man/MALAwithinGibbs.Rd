@@ -7,7 +7,7 @@
 MALAwithinGibbs(model, cores, Time, Data)
 }
 \arguments{
-\item{model}{Which model to use to carry out inference}
+\item{model}{Which model to use to carry out inference (1, 2 or 3)}
 
 \item{cores}{The number of cores to parallelise over}
 
