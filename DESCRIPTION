@@ -17,6 +17,6 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Imports:
-    actuar
+    actuar,
     reticulate
 	
