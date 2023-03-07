@@ -2,12 +2,10 @@
 % Please edit documentation in R/loadPython.R
 \name{getPython}
 \alias{getPython}
-\title{Install miniconda python environment and required modules if not already installed and then load python functions
-#' @export}
+\title{Install miniconda python environment and required modules if not already installed and then load python functions}
 \usage{
 getPython()
 }
 \description{
 Install miniconda python environment and required modules if not already installed and then load python functions
-#' @export
 }
