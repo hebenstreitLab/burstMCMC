@@ -1,3 +1,4 @@
+#' Convert pre-processed data and capture efficiencies into the format required by the inference algorithm
 #' @export
 formatData <- function(preprocessedData, alphas, cores) {
   alphas <- sapply(names(preprocessedData[["UMIcounts"]][[names(preprocessedData[["UMIcounts"]])[1]]]), function(cell, alphas) {

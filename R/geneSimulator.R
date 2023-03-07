@@ -1,3 +1,4 @@
+#' Simulate data in the format required for the inference algorithm based on real data and 'ground truth' parameter values to test algorithm performance on
 #' @export
 simulateGenes <- function(cores, Time, Data, estimates) {
   genes <- names(Data)

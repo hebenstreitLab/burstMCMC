@@ -1,4 +1,5 @@
-#' @export
+#' Install miniconda python environment and required modules if not already installed and then load python functions
+#' #' @export
 getPython <- function() {
   try(reticulate::install_miniconda(), silent = T)
   if (!reticulate::py_module_available('scipy')) {
