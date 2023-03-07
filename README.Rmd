@@ -48,7 +48,7 @@ outputs <- MALAwithinGibbs(model, cores, Time, Data)
 outputs <- burstMCMC::outputs
 ```
 
-We also provide the mean value and corresponding coefficient of variation (CV) for three parameters (expression level, burst rate and transcript lifetime) dervied from the posteriors for all 12276 genes we carried out inference on in the paper. In addition, we provide the mean value estimates for five parameters (expression level, burst rate and decay rate, burst size, burst frequency) just for the 584 high confidence genes from the paper.
+We also provide the mean value and corresponding coefficient of variation (CV) for three parameters (expression level, burst rate and transcript lifetime) derived from the posteriors for all 12276 genes we carried out inference on in the paper. In addition, we provide the mean value estimates for five parameters (expression level, burst rate and decay rate, burst size, burst frequency) just for the 584 high confidence genes from the paper.
 ``` {R eval=F, echo=T}
 means <- burstMCMC::means
 CVs <- burstMCMC::CVs

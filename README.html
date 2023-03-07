@@ -372,7 +372,9 @@ counts, T&gt;C conversions per read, total Ts per read (in the
 corresponding fasta sequence) for each cell and gene, the cell-specific
 capture efficiencies, the gene-specific background T&gt;C rates, and the
 gene-invariant 4sU-mediated T&gt;C rate, which were obtained with our
-pre-processing scripts.</p>
+pre-processing scripts. Both of these files, called
+“qiuDataSelectedGenes.Rdata” and “qiuAlphas.Rdata”, are available on
+Zenodo ().</p>
 <div id="installation-and-preabmle" class="section level2">
 <h2>Installation and preabmle</h2>
 <p>Download and installation of our package ‘burstMCMC’ is done via
@@ -411,7 +413,8 @@ which the data is partitioned by genes at the highest level. The
 ‘genomicTs’ part of the data has been pooled across cells for each gene
 and used to obtain an empirical probability mass function for the total
 number of uracils present in each read which may or may not have
-undergone conversion.</p>
+undergone conversion. The full dataset in the correct format, a file
+called “Data.Rdata”, is available on Zenodo ().</p>
 <pre class="r"><code>Data &lt;- burstMCMC::sampleData
 genes &lt;- names(Data)
 View(Data)</code></pre>
@@ -439,7 +442,7 @@ outputs &lt;- MALAwithinGibbs(model, cores, Time, Data)
 outputs &lt;- burstMCMC::outputs</code></pre>
 <p>We also provide the mean value and corresponding coefficient of
 variation (CV) for three parameters (expression level, burst rate and
-transcript lifetime) dervied from the posteriors for all 12276 genes we
+transcript lifetime) derived from the posteriors for all 12276 genes we
 carried out inference on in the paper. In addition, we provide the mean
 value estimates for five parameters (expression level, burst rate and
 decay rate, burst size, burst frequency) just for the 584 high
