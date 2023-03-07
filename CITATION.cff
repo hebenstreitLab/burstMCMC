@@ -22,4 +22,7 @@ authors:
     family-names: Hebenstreit
     email: d.hebenstreit@warwick.ac.uk
     affiliation: University of Warwick School of Life Sciences
+identifiers:
+  - type: url
+    value: 'https://github.com/hebenstreitLab/burstMCMC'
 license: MIT
