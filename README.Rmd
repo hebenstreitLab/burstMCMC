@@ -1,6 +1,6 @@
 # Inferring transcriptional bursting dynamics from 4sU scRNA-seq data
 
-This is the R package associated with the paper entitled “Synergising single-cell resolution and 4sU labelling boosts inference of transcriptional bursting” to carry out Bayesian inference of transcriptional bursting dynamics parameters from 4sU scRNA-seq data using a Markov chain Monte Carlo (MCMC) algorithm. This does not include pre-processing steps for extracting the required information from the raw data since this is not a generalisable procedure and varies based on the sequencing method etc. That being said, the scripts we used for pre-processing of the 4sU scRNA-seq data obtained from the Qiu et al 2020 paper entitled "Massively parallel and time-resolved RNA sequencing in single cells with scNT-seq", which we applied our inference method to in our paper, can be found in our GitHub repository (https://github.com/hebenstreitLab/burstMCMCpreprocessing). Therefore, this package assumes we already have the information on UMI counts, T>C conversions per read, total Ts per read (in the corresponding fasta sequence) for each cell and gene, the cell-specific capture efficiencies, the gene-specific background T>C rates, and the gene-invariant 4sU-mediated T>C rate, which were obtained with our pre-processing scripts.
+This is the R package associated with the paper entitled “Synergising single-cell resolution and 4sU labelling boosts inference of transcriptional bursting” to carry out Bayesian inference of transcriptional bursting dynamics parameters from 4sU scRNA-seq data using a Markov chain Monte Carlo (MCMC) algorithm. This does not include pre-processing steps for extracting the required information from the raw data since this is not a generalisable procedure and varies based on the sequencing method etc. That being said, the scripts we used for pre-processing of the 4sU scRNA-seq data obtained from the Qiu et al 2020 paper entitled "Massively parallel and time-resolved RNA sequencing in single cells with scNT-seq", which we applied our inference method to in our paper, can be found in our GitHub repository (https://github.com/hebenstreitLab/burstMCMCpreprocessing). Therefore, this package assumes we already have the information on UMI counts, T>C conversions per read, total Ts per read (in the corresponding fasta sequence) for each cell and gene, the cell-specific capture efficiencies, the gene-specific background T>C rates, and the gene-invariant 4sU-mediated T>C rate, which were obtained with our pre-processing scripts. Both of these files, called "qiuDataSelectedGenes.Rdata" and "qiuAlphas.Rdata", are available on Zenodo ().
 
 ## Installation and preabmle
 
@@ -14,17 +14,17 @@ getPython()
 
 ## Loading data
 
-After installation, the data must be formatted correctly to be input into the algorithm. A sample of the pre-processed data output by our pre-processing pipeline when applied to the Qiu dataset is provided for ten genes which we were able to derive high confidence parameter estimates for in the paper. We also provide the cell-specific capture efficiencies (alphas) estimated with the pre-processing scripts.
+After installation, the data must be formatted correctly to be input into the algorithm. A sample of the pre-processed data output by our pre-processing pipeline when applied to the Qiu dataset is provided for ten genes which we were able to derive high confidence parameter estimates for in the paper. We also provide the cell-specific capture efficiencies (alphas) estimated with the pre-processing scripts. 
 ``` {R eval=F, echo=T}
 preprocessedData <- burstMCMC::preprocessedData
 alphas <- burstMCMC::alphas
 ```
-These are loaded automatically with the package. The 'formatData' function can then be used to convert the pre-processed Qiu data and the alphas into the format required by the algorithm, with the option to parallelise over multiple cores. 
+These are loaded automatically with the package. The 'formatData' function can then be used to convert the pre-processed Qiu data and the alphas into the format required by the algorithm, with the option to parallelise over multiple cores.
 ``` {R eval=F, echo=T}
 cores <- 10
 Data <- formatData(preprocessedData, alphas, cores)
 ```
-The correctly formatted data for the ten sampled genes may also be directly loaded in through the package and its structure viewed, in which the data is partitioned by genes at the highest level. The 'genomicTs' part of the data has been pooled across cells for each gene and used to obtain an empirical probability mass function for the total number of uracils present in each read which may or may not have undergone conversion.
+The correctly formatted data for the ten sampled genes may also be directly loaded in through the package and its structure viewed, in which the data is partitioned by genes at the highest level. The 'genomicTs' part of the data has been pooled across cells for each gene and used to obtain an empirical probability mass function for the total number of uracils present in each read which may or may not have undergone conversion. The full dataset in the correct format, a file called "Data.Rdata", is available on Zenodo ().
 ``` {R eval=F, echo=T}
 Data <- burstMCMC::sampleData
 genes <- names(Data)
