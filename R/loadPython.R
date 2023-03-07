@@ -1,10 +1,6 @@
 #' @export
 getPython <- function() {
-  if (class(try(reticulate::install_miniconda(), silent = T)) != 'try-error') {
-    reticulate::install_miniconda()
-    reticulate::py_install('scipy')
-    reticulate::py_install('numpy')
-  }
+  try(reticulate::install_miniconda(), silent = T)
   if (!reticulate::py_module_available('scipy')) {
     reticulate::py_install('scipy')
   }
